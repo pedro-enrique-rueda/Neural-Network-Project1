@@ -1,22 +1,41 @@
 function initializing(){
-    let principal = document.getElementById("wheremagichappens");
-    var newElement = document.createElement("h1",{id:"nuevo"});
-    var newContent = document.createTextNode("Welcome and select one option from left-side.");
+    var principal = document.getElementById("wheremagichappens");
+    var welcome = document.createElement("h1",{id:"nuevo"});
+    var welcomeContent = document.createTextNode("Welcome and select one option from left-side.");
     
-    newElement.setAttribute("style","color:blue; text-align: center; margin-top:20vh;");
-    newElement.appendChild(newContent);
-    principal.appendChild(newElement);
+    welcome.setAttribute("style","color:blue; text-align: center; margin-top:20vh;");
+    welcome.appendChild(welcomeContent);
+    principal.appendChild(welcome);
 
     
-    var op = document.querySelectorAll("#op");
+    
+    var op = document.querySelectorAll(".op");
     op.forEach(function(item){
-        item.addEventListener("click",hola,false);
+        item.addEventListener("click",optselected,false);
     })
 
-    function hola(){
-        alert("hola");
+    
+    function optselected(e){
+        let id_item = e.target.getAttribute('id');
+        if(id_item == 'logic_gates'){
+            logic_gates(id_item);
+        }
     }
     
+    function logic_gates(id_item){
+        // remove welcome element first
+        principal.removeChild(welcome);
+
+        // now we create new elements for this operation
+        var train = document.createElement("button",{id:"train"});
+        var trainContent = document.createTextNode("hola");
+        train.setAttribute("style","color:blue; width:100px; height:20px;");
+        train.appendChild(trainContent);
+        principal.appendChild(train); 
+
+        train.addEventListener("click",l_gates,false);
+
+    }
 
 
 }
